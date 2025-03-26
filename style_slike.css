@@ -1,0 +1,136 @@
+@import url('https://fonts.googleapis.com/css?family=Abel');
+
+:root {
+    --primary-color: darkblue;
+    --lightbox-bg: rgba(0,0,0,0.9);
+    --transition-speed: 0.3s;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Abel', sans-serif;
+    background-color: #f4f4f4;
+}
+
+.galerija {
+    padding: 20px;
+}
+
+.galerija h1 {
+    color: var(--primary-color);
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.galerija_slike {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    width: 90%;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.galerija_slika {
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+.galerija_slika img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+}
+
+
+.lightbox {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--lightbox-bg);
+  z-index: 1000;
+  opacity: 0;
+  transition: opacity var(--transition-speed);
+}
+
+.lightbox img {
+  max-width: 90%;
+  max-height: 90%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  object-fit: contain;
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  color: white;
+  font-size: 40px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.galerija_slika input[type="checkbox"]:checked ~ .lightbox {
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.9);
+  z-index: 1000;
+  opacity: 1;
+}
+
+.galerija_slika input[type="checkbox"]:checked ~ .lightbox img {
+  max-width: 90%;
+  max-height: 90%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  object-fit: contain;
+}
+
+.galerija_slika label {
+  cursor: pointer;
+  display: block;
+}
+
+.galerija_slika input[type="checkbox"] {
+  display: none;
+}
+
+.galerija_slika label img {
+  cursor: pointer;
+}
+
+.lightbox-gallery {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(255,255,255,0.2);
+    padding: 10px 20px;
+    border-radius: 5px;
+    color: white;
+    text-decoration: none;
+}
+
+@media (max-width: 768px) {
+    .galerija_slike {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    }
+}
